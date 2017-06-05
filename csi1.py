@@ -3,7 +3,7 @@ import string
 
 start_time = time.clock()
 
-rack = (raw_input("Enter Rack:"))             #recieve user input for rack
+rack =''.join(sorted((raw_input("Enter Rack:")).upper()))             #recieve user input for rack
 
 if (rack.isalpha()) != True:                     #check whether rack is only alphabets
 	print "Enter Only Alphabets "
@@ -41,7 +41,7 @@ for line in fp.readlines():
 	else:
 		for s in word:					        #to calculate the score
 			score += scores[s]
-		answer.update({word:score})		       	#updating the answer dictionary
+		answer.update({score:word})		       	#updating the answer dictionary
 		score=0						
 	
 	r=rack
@@ -50,7 +50,7 @@ fp.close()
 							                    #closing the file
 print "\nAND YOU GO\n"
 for key in sorted(answer):					    #your final answer
-	print answer[key], key 
+	print key, answer[key] 
 	
 print time.clock() - start_time, "seconds"
 
