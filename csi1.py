@@ -53,4 +53,3 @@ for key in sorted(answer):					    #your final answer
 	print key, answer[key] 
 	
 print time.clock() - start_time, "seconds"
-
