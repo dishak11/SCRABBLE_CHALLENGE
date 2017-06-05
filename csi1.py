@@ -1,13 +1,20 @@
 import time
-start_time = time.clock()
-
 import string
 
-rack=(raw_input()).upper()
-r=rack
-l=len(rack)
-score=0
-answer={}
+start_time = time.clock()
+
+rack = (raw_input("Enter Rack:"))             #recieve user input for rack
+
+if (rack.isalpha()) != True:                     #check whether rack is only alphabets
+	print "Enter Only Alphabets "
+	exit(1)
+
+rack  = rack.upper()
+
+r = rack
+l = len(rack)
+score = 0
+answer = {}                                     #dict of valid words made from rack
 
 scores = {"A": 1, "C": 3, "B": 3, "E": 1, "D": 2, "G": 2,
          "F": 4, "I": 1, "H": 4, "K": 5, "J": 8, "M": 3,
@@ -15,27 +22,35 @@ scores = {"A": 1, "C": 3, "B": 3, "E": 1, "D": 2, "G": 2,
          "R": 1, "U": 1, "T": 1, "W": 4, "V": 4, "Y": 4,
          "X": 8, "Z": 10}
          
-fp=open("sowpods.txt","r")					#opening and reading the file
+try:
+    fp=open("sowpods.txt","r")		            #opening and reading the file
+except EnvironmentError:                        #handle error when sowpods.txt is missing
+    print "Cannot find sowpods.txt"
+    exit(1)
+    
 for line in fp.readlines():
-	word=line.strip()					#taking each word
-	for i in word:						#checking each letter in word
-		for a in r:					#each letter in rack
+	word=line.strip()				            #taking each word
+	for i in word:					            #checking each letter in word
+		for a in r:				  	            #each letter in rack
 			if i==a:
 				r= string.replace(r,a,"", 1)	#deleting the element once occured
 				break
 		else:
 			break
+	
 	else:
-		for s in word:					#to calculate the score
-			score+=scores[s]
-		answer.update({word:score})			#updating the answer dictionary
+		for s in word:					        #to calculate the score
+			score += scores[s]
+		answer.update({word:score})		       	#updating the answer dictionary
 		score=0						
+	
 	r=rack
-fp.close()							#closing the file
+	
+fp.close()
+							                    #closing the file
 print "\nAND YOU GO\n"
-for key in sorted(answer):					#your final answer
+for key in sorted(answer):					    #your final answer
 	print answer[key], key 
 	
-
 print time.clock() - start_time, "seconds"
 
