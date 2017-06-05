@@ -50,6 +50,6 @@ fp.close()
 							                    #closing the file
 print "\nAND YOU GO\n"
 for key in sorted(answer):					    #your final answer
-	print key, answer[key] 
+	print str(key)+" "+answer[key] 
 	
 print time.clock() - start_time, "seconds"
