@@ -26,7 +26,7 @@ try:
     fp=open("sowpods.txt","r")		            #opening and reading the file
 except EnvironmentError:                        #handle error when sowpods.txt is missing
     print "Cannot find sowpods.txt"
-    exit(1)
+    exit(1)					#exit
     
 for line in fp.readlines():
 	word=line.strip()				            #taking each word
